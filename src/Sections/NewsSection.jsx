@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import * as fetchData from "../Data/FetchData";
-import NewsCard from "../Components/NewsCard";
+import ArticleCard from "../Components/ArticleCard";
 
 export default function NewsSection() {
   const [news, setNews] = useState([]);
@@ -22,7 +22,7 @@ export default function NewsSection() {
         <p>Loading News...</p>
       ) : (
         news.map((article) => (
-          <NewsCard
+          <ArticleCard
             key={article.url}
             title={article.title}
             description={article.description}

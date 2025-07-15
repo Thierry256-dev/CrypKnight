@@ -25,6 +25,7 @@ export default function MarketsSection() {
             key={market.id}
             price={market.current_price}
             name={market.name}
+            image={market.image}
             marketCap={market.market_cap}
             volume={market.total_volume}
             priceChange={market.price_change_percentage_24h}
