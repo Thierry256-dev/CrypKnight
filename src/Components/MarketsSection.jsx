@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as fetchData from "../Data/FetchData";
 import CoinCard from "./CoinCard";
 
-export default function MarketsComponent() {
+export default function MarketsSection() {
   const [markets, setMarkets] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 

@@ -133,10 +133,11 @@ export const fetchAllNews = async (data, setData) => {
     const response = await axios.get(`${URLS.NEWS_URL}/everything`, {
       params: {
         q: "cryptocurrency",
+        apiKey: import.meta.env.VITE_NEWS_API_KEY,
       },
     });
 
-    setData((data = response.data));
+    setData((data = response.data.articles));
   } catch (error) {
     console.error("Error fetching news:", error);
   }
