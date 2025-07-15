@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import * as fetchData from "../Data/FetchData";
-import NewsCard from "./NewsCard";
+import NewsCard from "../Components/NewsCard";
 
 export default function NewsSection() {
   const [news, setNews] = useState([]);
@@ -9,7 +9,7 @@ export default function NewsSection() {
   useEffect(() => {
     const fetchNews = async () => {
       setIsLoading(true);
-      await fetchData.fetchAllNews(news, setNews);
+      await fetchData.fetchAllNews(setNews);
       setIsLoading(false);
     };
     fetchNews();

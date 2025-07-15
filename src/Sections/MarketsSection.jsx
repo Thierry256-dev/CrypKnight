@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as fetchData from "../Data/FetchData";
-import CoinCard from "./CoinCard";
+import CoinCard from "../Components/CoinCard";
 
 export default function MarketsSection() {
   const [markets, setMarkets] = useState([]);
@@ -9,7 +9,7 @@ export default function MarketsSection() {
   useEffect(() => {
     const fetchMarkets = async () => {
       setIsLoading(true);
-      await fetchData.fetchMarkets(markets, setMarkets);
+      await fetchData.fetchMarkets(setMarkets);
       setIsLoading(false);
     };
     fetchMarkets();

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import * as fetchData from "../Data/FetchData";
-import ApexCharts from "react-apexcharts";
+import CoinGraph from "../Components/CoinGraph";
 
-export default function Dashboard() {
+export default function CoinGraphSection() {
   const [chartData, setChartData] = useState({
     series: [{ name: "Bitcoin", data: [] }],
     options: {
@@ -43,7 +43,7 @@ export default function Dashboard() {
       {isLoading ? (
         <p>Loading Chart...</p>
       ) : (
-        <ApexCharts
+        <CoinGraph
           options={chartData.options}
           series={chartData.series}
           type="candlestick"

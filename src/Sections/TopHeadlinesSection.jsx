@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import * as fetchData from "../Data/FetchData";
+import ArticleCard from "../Components/ArticleCard";
 
 export default function TopHeadlinesSection() {
   const [headlines, setHeadlines] = useState([]);
@@ -8,7 +9,7 @@ export default function TopHeadlinesSection() {
   useEffect(() => {
     const fetchHeadlines = async () => {
       setIsLoading(true);
-      await fetchData.fetchTopHeadlines(headlines, setHeadlines);
+      await fetchData.fetchTopHeadlines(setHeadlines);
       setIsLoading(false);
       console.log(headlines);
     };

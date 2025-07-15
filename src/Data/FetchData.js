@@ -1,7 +1,7 @@
 import * as URLS from "../services/urls.js";
 import axios from "axios";
 
-export const fetchMarkets = async (data, setData) => {
+export const fetchMarkets = async (setData) => {
   try {
     const response = await axios.get(`${URLS.COINGECKO_URL}/coins/markets`, {
       params: {
@@ -13,35 +13,37 @@ export const fetchMarkets = async (data, setData) => {
       },
     });
 
-    setData((data = response.data));
+    setData(response.data);
   } catch (error) {
     console.error("Error fetching markets:", error);
   }
-
-  return data;
 };
 
-export const fetchCoinChart = async (coinId, days = 30, data, setData) => {
+export const fetchCoinChart = async (coinId, days, setData) => {
   try {
     const response = await axios.get(
-      `${URLS.COINGECKO_URL}/coins/${coinId}/market_chart`,
+      `${URLS.COINGECKO_URL}/coins/${coinId}/ohlc`,
       {
         params: {
           vs_currency: "usd",
           days: days,
-          interval: "daily",
         },
       }
     );
-
-    setData((data = response.data));
+    const data = response.data.map(([timestamp, open, high, low, close]) => ({
+      x: new Date(timestamp).toISOString(),
+      y: [open, high, low, close],
+    }));
+    setData((prev) => ({
+      ...prev,
+      series: [{ name: coinId, data }],
+    }));
   } catch (error) {
-    console.error("Error fetching coin chart:", error);
+    console.error("Error fetching candlestick data:", error);
   }
-  return data;
 };
 
-export const fetchCoinDetails = async (coinId, data, setData) => {
+export const fetchCoinDetails = async (coinId, setData) => {
   try {
     const response = await axios.get(`${URLS.COINGECKO_URL}/coins/${coinId}`, {
       params: {
@@ -54,15 +56,13 @@ export const fetchCoinDetails = async (coinId, data, setData) => {
       },
     });
 
-    setData((data = response.data));
+    setData(response.data);
   } catch (error) {
     console.error("Error fetching coin details:", error);
   }
-
-  return data;
 };
 
-export const fetchGlobalStats = async (data, setData) => {
+export const fetchGlobalStats = async (setData) => {
   try {
     const response = await axios.get(`${URLS.COINGECKO_URL}/global`, {
       params: {
@@ -75,14 +75,13 @@ export const fetchGlobalStats = async (data, setData) => {
       },
     });
 
-    setData((data = response.data));
+    setData(response.data);
   } catch (error) {
     console.error("Error fetching global stats:", error);
   }
-  return data;
 };
 
-export const fetchNewsSources = async (data, setData) => {
+export const fetchNewsSources = async (setData) => {
   try {
     const response = await axios.get(`${URLS.NEWS_URL}/sources`, {
       params: {
@@ -91,14 +90,13 @@ export const fetchNewsSources = async (data, setData) => {
       },
     });
 
-    setData((data = response.data));
+    setData(response.data);
   } catch (error) {
     console.error("Error fetching news sources:", error);
   }
-  return data;
 };
 
-export const fetchSearch = async (query, data, setData) => {
+export const fetchSearch = async (query, setData) => {
   try {
     const response = await axios.get(`${URLS.COINGECKO_URL}/search`, {
       params: {
@@ -106,11 +104,10 @@ export const fetchSearch = async (query, data, setData) => {
       },
     });
 
-    setData((data = response.data));
+    setData(response.data);
   } catch (error) {
     console.error("Error fetching search results:", error);
   }
-  return data;
 };
 
 export const fetchTopHeadlines = async (data, setData) => {
@@ -124,14 +121,13 @@ export const fetchTopHeadlines = async (data, setData) => {
       },
     });
 
-    setData((data = response.data.articles));
+    setData(response.data.articles);
   } catch (error) {
     console.error("Error fetching top headlines:", error);
   }
-  return data;
 };
 
-export const fetchAllNews = async (data, setData) => {
+export const fetchAllNews = async (setData) => {
   try {
     const response = await axios.get(`${URLS.NEWS_URL}/everything`, {
       params: {
@@ -140,9 +136,8 @@ export const fetchAllNews = async (data, setData) => {
       },
     });
 
-    setData((data = response.data.articles));
+    setData(response.data.articles);
   } catch (error) {
     console.error("Error fetching news:", error);
   }
-  return data;
 };
