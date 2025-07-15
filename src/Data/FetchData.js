@@ -119,9 +119,12 @@ export const fetchTopHeadlines = async (data, setData) => {
       params: {
         category: "business",
         country: "us",
+        apiKey: import.meta.env.VITE_NEWS_API_KEY,
+        pageSize: 10,
       },
     });
-    setData((data = response.data));
+
+    setData((data = response.data.articles));
   } catch (error) {
     console.error("Error fetching top headlines:", error);
   }

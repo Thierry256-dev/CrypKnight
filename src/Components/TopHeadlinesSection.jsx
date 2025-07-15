@@ -1,29 +1,32 @@
 import { useEffect, useState } from "react";
 import * as fetchData from "../Data/FetchData";
 
-export default function Dashboard() {
+export default function TopHeadlinesSection() {
   const [headlines, setHeadlines] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchNews = async () => {
+    const fetchHeadlines = async () => {
       setIsLoading(true);
       await fetchData.fetchTopHeadlines(headlines, setHeadlines);
       setIsLoading(false);
       console.log(headlines);
     };
-    fetchNews();
+    fetchHeadlines();
   }, []);
   return (
     <div>
+      <h1>Latest News</h1>
       {isLoading ? (
         <p>Loading News...</p>
       ) : (
-        headlines.map((article, index) => (
-          <div key={index}>
-            <h2>{article.title}</h2>
-            <img src={article.urlToImage} alt={article.title} />
-            <p>{article.description}</p>
+        headlines.map((article) => (
+          <div key={article.url}>
+            <ArticleCard
+              title={article.title}
+              description={article.description}
+              image={article.urlToImage}
+            />
             <a href={article.url} target="_blank" rel="noopener noreferrer">
               Read More
             </a>
