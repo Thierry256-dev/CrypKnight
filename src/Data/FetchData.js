@@ -18,7 +18,7 @@ export const fetchMarkets = async (data, setData) => {
     console.error("Error fetching markets:", error);
   }
 
-  console.log(data);
+  return data;
 };
 
 export const fetchCoinChart = async (coinId, days = 30, data, setData) => {
@@ -38,7 +38,7 @@ export const fetchCoinChart = async (coinId, days = 30, data, setData) => {
   } catch (error) {
     console.error("Error fetching coin chart:", error);
   }
-  return console.log(data);
+  return data;
 };
 
 export const fetchCoinDetails = async (coinId, data, setData) => {
@@ -59,7 +59,7 @@ export const fetchCoinDetails = async (coinId, data, setData) => {
     console.error("Error fetching coin details:", error);
   }
 
-  return console.log(data);
+  return data;
 };
 
 export const fetchGlobalStats = async (data, setData) => {
@@ -79,7 +79,7 @@ export const fetchGlobalStats = async (data, setData) => {
   } catch (error) {
     console.error("Error fetching global stats:", error);
   }
-  return console.log(data);
+  return data;
 };
 
 export const fetchNewsSources = async (data, setData) => {
@@ -95,7 +95,7 @@ export const fetchNewsSources = async (data, setData) => {
   } catch (error) {
     console.error("Error fetching news sources:", error);
   }
-  return console.log(data);
+  return data;
 };
 
 export const fetchSearch = async (query, data, setData) => {
@@ -110,7 +110,7 @@ export const fetchSearch = async (query, data, setData) => {
   } catch (error) {
     console.error("Error fetching search results:", error);
   }
-  return console.log(data);
+  return data;
 };
 
 export const fetchTopHeadlines = async (data, setData) => {
@@ -125,7 +125,7 @@ export const fetchTopHeadlines = async (data, setData) => {
   } catch (error) {
     console.error("Error fetching top headlines:", error);
   }
-  return console.log(data);
+  return data;
 };
 
 export const fetchAllNews = async (data, setData) => {
@@ -140,5 +140,5 @@ export const fetchAllNews = async (data, setData) => {
   } catch (error) {
     console.error("Error fetching news:", error);
   }
-  return console.log(data);
+  return data;
 };
