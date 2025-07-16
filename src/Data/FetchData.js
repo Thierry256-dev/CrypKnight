@@ -96,21 +96,21 @@ export const fetchNewsSources = async (setData) => {
   }
 };
 
-export const fetchSearch = async (query, setData) => {
+export const fetchSearch = async (query) => {
+  let response;
   try {
-    const response = await axios.get(`${URLS.COINGECKO_URL}/search`, {
+    response = await axios.get(`${URLS.COINGECKO_URL}/search`, {
       params: {
         query: query,
       },
     });
-
-    setData(response.data);
   } catch (error) {
     console.error("Error fetching search results:", error);
   }
+  return response.data;
 };
 
-export const fetchTopHeadlines = async (data, setData) => {
+export const fetchTopHeadlines = async (setData) => {
   try {
     const response = await axios.get(`${URLS.NEWS_URL}/top-headlines`, {
       params: {

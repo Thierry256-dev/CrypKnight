@@ -37,7 +37,7 @@ export default function CoinGraphSection() {
       setIsLoading(false);
     };
     fetchCandles();
-  }, [chartData]);
+  }, []);
   return (
     <div>
       {isLoading ? (
