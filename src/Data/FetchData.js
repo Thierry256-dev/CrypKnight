@@ -1,6 +1,29 @@
 import * as URLS from "../services/urls.js";
 import axios from "axios";
 
+export const fetchCoinsLine = async (coinId, days, setData) => {
+  try {
+    const response = await axios.get(
+      `${URLS.COINGECKO_URL}/coins/${coinId}/market_chart`,
+      {
+        params: {
+          vs_currency: "usd",
+          days: days,
+        },
+      }
+    );
+    const data = response.data.prices.map(([timestamp, price]) => ({
+      x: new Date(timestamp).toISOString(),
+      y: price,
+    }));
+    setData((prev) => ({
+      ...prev,
+      series: [{ name: coinId, data }],
+    }));
+  } catch (error) {
+    console.error("Error fetching markets_charts:", error);
+  }
+};
 export const fetchMarkets = async (setData) => {
   try {
     const response = await axios.get(`${URLS.COINGECKO_URL}/coins/markets`, {
