@@ -40,6 +40,10 @@ export default function CoinGraphSection() {
   }, []);
   return (
     <div>
+      <div>
+        <div></div>
+        <div></div>
+      </div>
       {isLoading ? (
         <p>Loading Chart...</p>
       ) : (

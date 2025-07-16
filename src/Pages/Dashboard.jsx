@@ -1,6 +1,3 @@
-import { useEffect, useState } from "react";
-import * as fetchData from "../Data/FetchData";
-
 import CoinGraphSection from "../Sections/CoinGraphSection";
 import MarketSection from "../Sections/MarketsSection";
 import NewsSection from "../Sections/NewsSection";
@@ -10,13 +7,20 @@ import GlobalStatsSection from "../Sections/GlobalStatsSection";
 
 export default function Dashboard() {
   return (
-    <div>
-      <GlobalStatsSection />
-      <SearchBar />
-      <CoinGraphSection />
-      <MarketSection />
-      <TopHeadlinesSection />
-      <NewsSection />
+    <div className="flex p-6 w-[100%] dark text-read dark:bg-primary h-[100vh]">
+      <div className="w-[70%]">
+        <CoinGraphSection />
+        <div className="h-[100%] overflow-y-auto">
+          <NewsSection />
+        </div>
+      </div>
+      <div className="w-[30%]">
+        <SearchBar />
+        <GlobalStatsSection />
+      </div>
+
+      {/* <MarketSection />
+      <TopHeadlinesSection /> */}
     </div>
   );
 }
