@@ -64,18 +64,9 @@ export const fetchCoinDetails = async (coinId, setData) => {
 
 export const fetchGlobalStats = async (setData) => {
   try {
-    const response = await axios.get(`${URLS.COINGECKO_URL}/global`, {
-      params: {
-        localization: false,
-        tickers: false,
-        market_data: true,
-        community_data: false,
-        developer_data: false,
-        sparkline: false,
-      },
-    });
+    const response = await axios.get(`${URLS.COINGECKO_URL}/global`);
 
-    setData(response.data);
+    setData(response.data.data);
   } catch (error) {
     console.error("Error fetching global stats:", error);
   }
