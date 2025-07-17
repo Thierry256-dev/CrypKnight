@@ -1,17 +1,16 @@
 import CoinGraphSection from "../Sections/CoinGraphSection";
 import MarketSection from "../Sections/MarketsSection";
-import NewsSection from "../Sections/NewsSection";
 import TopHeadlinesSection from "../Sections/TopHeadlinesSection";
 import SearchBar from "../Components/SearchBar";
 import GlobalStatsSection from "../Sections/GlobalStatsSection";
 
 export default function Dashboard() {
   return (
-    <div className="flex p-6 w-[100%] dark text-read dark:bg-primary h-[100vh]">
+    <div className="flex p-6 w-screen dark text-read dark:bg-primary max-h-screen overflow-y-hidden">
       <div className="w-[70%]">
         <CoinGraphSection />
-        <div className="h-[100%] overflow-y-auto">
-          <NewsSection />
+        <div className="h-[100%]">
+          <TopHeadlinesSection />
         </div>
       </div>
       <div className="w-[30%]">
@@ -20,7 +19,8 @@ export default function Dashboard() {
       </div>
 
       {/* <MarketSection />
-      <TopHeadlinesSection /> */}
+     
+       */}
     </div>
   );
 }

@@ -131,7 +131,7 @@ export const fetchTopHeadlines = async (setData) => {
         category: "business",
         country: "us",
         apiKey: import.meta.env.VITE_NEWS_API_KEY,
-        pageSize: 10,
+        pageSize: 20,
       },
     });
 
@@ -142,11 +142,16 @@ export const fetchTopHeadlines = async (setData) => {
 };
 
 export const fetchAllNews = async (setData) => {
+  const now = new Date();
+
   try {
     const response = await axios.get(`${URLS.NEWS_URL}/everything`, {
       params: {
         q: "cryptocurrency",
         apiKey: import.meta.env.VITE_NEWS_API_KEY,
+        from: new Date(now.getTime() - 24 * 60 * 60 * 1000).toISOString,
+        to: now.toISOString(),
+        pageSize: 50,
       },
     });
 

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import * as fetchData from "../Data/FetchData";
-import ArticleCard from "../Components/ArticleCard";
 
 export default function TopHeadlinesSection() {
   const [headlines, setHeadlines] = useState([]);
@@ -16,23 +15,38 @@ export default function TopHeadlinesSection() {
     fetchHeadlines();
   }, []);
   return (
-    <div>
-      <h1>Latest News</h1>
+    <div className="h-[100%] ">
+      <h1 className="font-bold text-4xl p-2 text-read/90">Top Headlines</h1>
       {isLoading ? (
         <p>Loading News...</p>
       ) : (
-        headlines.map((article) => (
-          <div key={article.url}>
-            <ArticleCard
-              title={article.title}
-              description={article.description}
-              image={article.urlToImage}
-            />
-            <a href={article.url} target="_blank" rel="noopener noreferrer">
-              Read More
-            </a>
-          </div>
-        ))
+        <div className="grid grid-cols-2 gap-8 h-[100%] overflow-y-auto ">
+          {headlines.map((article) => (
+            <div className="relative flex gap-2 rounded-2xl bg-black/20 p-2">
+              {article.urlToImage && (
+                <img
+                  src={article.urlToImage}
+                  alt={article.title}
+                  className="w-60 rounded-xl"
+                />
+              )}
+              <div>
+                <h2 className="font-bold text-xl text-read/90">
+                  {article.title}
+                </h2>
+                <p className="p-2 text-read/70">{article.description}</p>
+                <a
+                  href={article.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="italic text-read/30 text-md"
+                >
+                  ReadMore
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );
