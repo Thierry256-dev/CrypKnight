@@ -35,7 +35,7 @@ export default function ExchangesSection() {
                 </div>
                 <div>
                   <p className="text-read/80">
-                    Volume:
+                    Volume/BTC:
                     <span className="text-green-400">
                       {" "}
                       {obj.trade_volume_24h_btc}

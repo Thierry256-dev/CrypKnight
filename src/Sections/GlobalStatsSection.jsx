@@ -14,22 +14,25 @@ export default function GlobalStatsSection() {
     fetchGlobalStats();
   }, []);
 
-  useEffect(() => {
-    console.log(globalStats);
-  }, [globalStats]);
-
   return (
-    <div>
-      <h2>Global Crypto Stats</h2>
+    <div className="p-4">
+      <h2 className="text-2xl font-semibold text-accent">
+        Global Crypto Stats
+      </h2>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <div>
-          <p>Active CyptoCurrencies: {globalStats.active_cryptocurrencies}</p>
-          <p>Upcoming ICOs: {globalStats.upcoming_icos}</p>
-          <p>Ongoing ICOs: {globalStats.ongoing_icos}</p>
-          <p>Ended ICOs: {globalStats.ended_icos}</p>
-          <p>Markets: {globalStats.markets}</p>
+        <div className="grid grid-cols-2 gap-2 p-2 bg-secondary/8 rounded-xl text-read/80">
+          <p>Active CyptoCurrencies</p>
+          <p className="text-read">: {globalStats.active_cryptocurrencies}</p>
+          <p>Ongoing ICOs</p>
+          <p className="text-read">: {globalStats.ongoing_icos}</p>
+          <p>Ended ICOs</p>
+          <p className="text-read">: {globalStats.ended_icos}</p>
+          <p>Markets</p>
+          <p className="text-read">: {globalStats.markets}</p>
+          <p>Total Market Cap/BTC</p>
+          <p className="text-read">: {globalStats.total_market_cap.btc}</p>
         </div>
       )}
     </div>
