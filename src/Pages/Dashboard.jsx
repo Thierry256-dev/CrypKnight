@@ -6,7 +6,7 @@ import GlobalStatsSection from "../Sections/GlobalStatsSection";
 
 export default function Dashboard() {
   return (
-    <div className="flex p-6 w-screen dark text-read dark:bg-primary max-h-screen overflow-y-hidden">
+    <div className="flex p-6 w-auto dark text-read dark:bg-primary max-h-screen overflow-y-hidden">
       <div className="w-[70%]">
         <CoinGraphSection />
         <div className="h-[100%]">
