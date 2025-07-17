@@ -27,11 +27,11 @@ export default function TopHeadlinesSection() {
                 <img
                   src={article.urlToImage}
                   alt={article.title}
-                  className="w-60 rounded-xl"
+                  className="w-60 h-60 rounded-xl"
                 />
               )}
               <div>
-                <h2 className="font-bold text-xl text-read/90">
+                <h2 className="font-semibold text-xl text-read/90">
                   {article.title}
                 </h2>
                 <p className="p-2 text-read/70">{article.description}</p>

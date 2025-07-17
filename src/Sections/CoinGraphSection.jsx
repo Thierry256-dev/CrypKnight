@@ -174,7 +174,7 @@ export default function CoinGraphSection() {
                 className={`px-4 py-1 rounded-md cursor-pointer font-bold transition duration-300  ${
                   item.days === days
                     ? "bg-accent hover:bg-accent/80"
-                    : "bg-gray-800 hover:bg-gray-700"
+                    : "bg-secondary/10 hover:bg-secondary/20"
                 }`}
               >
                 {item.name}
@@ -187,7 +187,7 @@ export default function CoinGraphSection() {
                 className={`px-4 py-1 cursor-pointer rounded-md font-bold transition duration-300  ${
                   obj.type === chartType
                     ? "bg-accent hover:bg-accent/80"
-                    : "bg-gray-800 hover:bg-gray-700"
+                    : "bg-secondary/10 hover:bg-secondary/20"
                 }`}
                 onClick={() => {
                   setChartType(obj.type);

@@ -22,7 +22,7 @@ export default function ExchangesSection() {
       ) : (
         <div className="flex flex-col overflow-y-auto gap-4">
           {exchanges.map((obj) => (
-            <div key={obj.id} className="flex gap-4 bg-black/50 p-2 rounded-lg">
+            <div key={obj.id} className="flex gap-4 bg-black/30 p-2 rounded-lg">
               <img
                 src={obj.image}
                 alt={obj.name}
