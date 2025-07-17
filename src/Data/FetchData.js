@@ -85,6 +85,20 @@ export const fetchCoinDetails = async (coinId, setData) => {
   }
 };
 
+export const fetchExchanges = async (setData) => {
+  try {
+    const response = await axios.get(`${URLS.COINGECKO_URL}/exchanges`, {
+      params: {
+        per_page: 50,
+      },
+    });
+
+    setData(response.data);
+  } catch (error) {
+    console.error("Error fetching exchanges:", error);
+  }
+};
+
 export const fetchGlobalStats = async (setData) => {
   try {
     const response = await axios.get(`${URLS.COINGECKO_URL}/global`);

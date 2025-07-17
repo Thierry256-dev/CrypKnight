@@ -1,8 +1,8 @@
 import CoinGraphSection from "../Sections/CoinGraphSection";
-import MarketSection from "../Sections/MarketsSection";
 import TopHeadlinesSection from "../Sections/TopHeadlinesSection";
 import SearchBar from "../Components/SearchBar";
 import GlobalStatsSection from "../Sections/GlobalStatsSection";
+import ExchangesSection from "../Sections/ExchangesSection";
 
 export default function Dashboard() {
   return (
@@ -13,14 +13,11 @@ export default function Dashboard() {
           <TopHeadlinesSection />
         </div>
       </div>
-      <div className="w-[30%]">
+      <div className="w-[30%] flex flex-col gap-4 h-screen p-2">
         <SearchBar />
+        <ExchangesSection />
         <GlobalStatsSection />
       </div>
-
-      {/* <MarketSection />
-     
-       */}
     </div>
   );
 }
