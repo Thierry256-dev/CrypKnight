@@ -32,7 +32,9 @@ export default function GlobalStatsSection() {
           <p>Markets</p>
           <p className="text-read">: {globalStats.markets}</p>
           <p>Total Market Cap/BTC</p>
-          <p className="text-read">: {globalStats.total_market_cap.btc}</p>
+          <p className="text-read">
+            : {globalStats.total_market_cap?.btc ?? "N/A"}
+          </p>
         </div>
       )}
     </div>

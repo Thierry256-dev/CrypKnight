@@ -15,12 +15,12 @@ export default function TopHeadlinesSection() {
     fetchHeadlines();
   }, []);
   return (
-    <div className="h-[100%] ">
+    <div className="h-[100%] w-[60%]">
       <h1 className="font-bold text-4xl p-2 text-read/90">Top Headlines</h1>
       {isLoading ? (
         <p>Loading News...</p>
       ) : (
-        <div className="grid grid-cols-2 gap-8 h-[100%] overflow-y-auto ">
+        <div className="grid grid-cols-1 gap-8 h-[490px] overflow-y-auto ">
           {headlines.map((article) => (
             <div className="relative flex gap-2 rounded-2xl bg-black/20 p-2">
               {article.urlToImage && (

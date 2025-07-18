@@ -99,6 +99,16 @@ export const fetchExchanges = async (setData) => {
   }
 };
 
+export const fetchTrending = async () => {
+  let response;
+  try {
+    response = await axios.get(`${URLS.COINGECKO_URL}/search/trending`);
+  } catch (error) {
+    console.error("Error fetching trending data:", error);
+  }
+  return response.data;
+};
+
 export const fetchGlobalStats = async (setData) => {
   try {
     const response = await axios.get(`${URLS.COINGECKO_URL}/global`);

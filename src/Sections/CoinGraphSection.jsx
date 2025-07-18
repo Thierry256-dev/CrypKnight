@@ -184,6 +184,7 @@ export default function CoinGraphSection() {
           <div className="flex gap-4">
             {typeOfChartBtnData.map((obj) => (
               <button
+                key={obj.name}
                 className={`px-4 py-1 cursor-pointer rounded-md font-bold transition duration-300  ${
                   obj.type === chartType
                     ? "bg-accent hover:bg-accent/80"
