@@ -1,11 +1,16 @@
+import NewsSection from "../Sections/NewsSection";
+import TopHeadlinesSection from "../Sections/TopHeadlinesSection";
+
 export default function News() {
   return (
-    <div>
-      <h1>News</h1>
-      <p>
-        This page will provide the latest news and updates in the cryptocurrency
-        world.
-      </p>
+    <div className="flex p-8 flex-col text-read/90 h-screen overflow-y-auto">
+      <h1 className="text-4xl text-read font-bold">News</h1>
+      <div>
+        <TopHeadlinesSection />
+      </div>
+      <div>
+        <NewsSection />
+      </div>
     </div>
   );
 }

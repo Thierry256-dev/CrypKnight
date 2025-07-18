@@ -1,7 +1,14 @@
 export default function ArticleCard({ title, description, image, url }) {
   return (
-    <div className="flex gap-2 rounded-lg">
-      {image && <img src={image} alt={title} className="w-50 rounded-4xl" />}
+    <div className="flex flex-col gap-2 rounded-lg">
+      {image && (
+        <img
+          src={image}
+          alt={title}
+          className="w-[100%] h-90 rounded-4xl"
+          loading="lazy"
+        />
+      )}
       <div>
         <h2 className="font-bold text-xl text-read/90">{title}</h2>
         <p className="p-2 text-read/70">{description}</p>
