@@ -21,37 +21,41 @@ export default function ExchangesSection() {
         <p>Loading Exhanges</p>
       ) : (
         <div className="flex flex-col overflow-y-auto gap-4">
-          {exchanges.map((obj) => (
-            <div key={obj.id} className="flex gap-4 bg-black/30 p-2 rounded-lg">
-              <img
-                src={obj.image}
-                alt={obj.name}
-                className="rounded-full w-20"
-              />
-              <div className="flex flex-col gap-2 w-100">
-                <div className="flex items-center justify-between">
-                  <h3 className="font-semibold text-lg">{obj.name}</h3>
-                  <p className="text-sm text-read/80">{obj.country}</p>
-                </div>
-                <div>
-                  <p className="text-read/80">
-                    Volume/BTC:
-                    <span className="text-green-400">
-                      {" "}
-                      {obj.trade_volume_24h_btc}
-                    </span>
-                  </p>
-                  <a
-                    href={obj.url}
-                    target="_blank"
-                    className="italic text-read/40 text-sm hover:text-read/60"
-                  >
-                    Official Website
-                  </a>
+          {exchanges.length > 0 &&
+            exchanges.map((obj) => (
+              <div
+                key={obj.id}
+                className="flex gap-4 bg-black/30 p-2 rounded-lg"
+              >
+                <img
+                  src={obj.image}
+                  alt={obj.name}
+                  className="rounded-full w-20"
+                />
+                <div className="flex flex-col gap-2 w-100">
+                  <div className="flex items-center justify-between">
+                    <h3 className="font-semibold text-lg">{obj.name}</h3>
+                    <p className="text-sm text-read/80">{obj.country}</p>
+                  </div>
+                  <div>
+                    <p className="text-read/80">
+                      Volume/BTC:
+                      <span className="text-green-400">
+                        {" "}
+                        {obj.trade_volume_24h_btc}
+                      </span>
+                    </p>
+                    <a
+                      href={obj.url}
+                      target="_blank"
+                      className="italic text-read/40 text-sm hover:text-read/60"
+                    >
+                      Official Website
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       )}
     </div>
