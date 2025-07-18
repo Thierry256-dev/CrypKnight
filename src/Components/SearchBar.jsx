@@ -36,7 +36,7 @@ export default function SearchBar() {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search Your Favorite Coin"
-          className="bg-secondary/10 p-2 w-100 rounded-lg text-lg focus:border-accent"
+          className="bg-secondary/10 py-2 px-4 w-100 rounded-full text-lg focus:border-accent"
         />
         <div className="absolute top-18 bg-black/20 backdrop-blur-sm w-100 rounded-md">
           {isLoading ? (

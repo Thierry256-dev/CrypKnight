@@ -40,7 +40,7 @@ export default function CoinGraphSection() {
       },
     },
   });
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [coinId, setCoinId] = useState("bitcoin");
   const [markets, setMarkets] = useState([]);
   const [currentPrice, setCurrentPrice] = useState(0);

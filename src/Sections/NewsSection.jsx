@@ -4,7 +4,7 @@ import ArticleCard from "../Components/ArticleCard";
 
 export default function NewsSection() {
   const [news, setNews] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchNews = async () => {

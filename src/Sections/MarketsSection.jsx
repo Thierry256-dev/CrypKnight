@@ -4,7 +4,7 @@ import CoinCard from "../Components/CoinCard";
 
 export default function MarketsSection() {
   const [markets, setMarkets] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchMarkets = async () => {

@@ -37,9 +37,9 @@ export default function SideBar() {
           <NavLink
             to={route.to}
             key={i}
-            className={(isActive) => {
-              isActive ? "bg-gray-800 flex items-center" : "flex items-center";
-            }}
+            className={({ isActive }) =>
+              isActive ? "bg-secondary/8 p-2 rounded-lg" : "p-2"
+            }
           >
             {route.icon}
             {route.pathName}

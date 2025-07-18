@@ -3,14 +3,13 @@ import * as fetchData from "../Data/FetchData";
 
 export default function TopHeadlinesSection() {
   const [headlines, setHeadlines] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchHeadlines = async () => {
       setIsLoading(true);
       await fetchData.fetchTopHeadlines(setHeadlines);
       setIsLoading(false);
-      console.log(headlines);
     };
     fetchHeadlines();
   }, []);
@@ -22,7 +21,10 @@ export default function TopHeadlinesSection() {
       ) : (
         <div className="grid grid-cols-1 gap-8 h-[490px] overflow-y-auto ">
           {headlines.map((article) => (
-            <div className="relative flex gap-2 rounded-2xl bg-black/20 p-2">
+            <div
+              className="relative flex gap-2 rounded-2xl bg-black/20 p-2"
+              key={article.title}
+            >
               {article.urlToImage && (
                 <img
                   src={article.urlToImage}
