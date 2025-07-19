@@ -1,18 +1,20 @@
 import { useState, useEffect } from "react";
 import * as fetchData from "../Data/FetchData";
 import { useNavigate } from "react-router-dom";
+import useDebounce from "../Hooks/useDebounce";
 
 export default function SearchBar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  const query = useDebounce();
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchSearchResults = async () => {
       setIsLoading(true);
-      const data = await fetchData.fetchSearch(searchQuery.trim());
+      const data = await fetchData.fetchSearch(query);
       if (data.length !== 0) {
         setSearchResults(data.coins);
         setIsLoading(false);
@@ -21,7 +23,7 @@ export default function SearchBar() {
       }
     };
     fetchSearchResults();
-  }, [searchQuery]);
+  }, [query]);
 
   const handleSearchNavigation = (coinId) => {
     setSearchQuery("");
@@ -38,7 +40,11 @@ export default function SearchBar() {
           placeholder="Search Your Favorite Coin"
           className="bg-secondary/10 py-2 px-4 w-100 rounded-full text-lg focus:border-accent"
         />
-        <div className="absolute top-18 bg-black/20 backdrop-blur-sm w-100 rounded-md">
+        <div
+          className={`absolute top-18 bg-black/20 backdrop-blur-sm w-100 rounded-md ${
+            searchQuery === "" && "hidden"
+          }`}
+        >
           {isLoading ? (
             <p>Loading...</p>
           ) : (
