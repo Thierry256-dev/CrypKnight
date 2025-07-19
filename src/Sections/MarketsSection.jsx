@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useEffect, useState } from "react";
 import * as fetchData from "../Data/FetchData";
 import CoinCard from "../Components/CoinCard";
 
-export default function MarketsSection() {
+function MarketsSection() {
   const [markets, setMarkets] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -20,31 +21,35 @@ export default function MarketsSection() {
       {isLoading ? (
         <p>Loading Markets...</p>
       ) : (
-        <div className="flex flex-col bg-secondary/10 rounded-2xl p-2 gap-4">
-          <div className="grid grid-cols-6 px-2 items-center text-xl">
-            <p>Coin</p>
-            <p>Price</p>
-            <p>Market Cap</p>
-            <p>Volume</p>
-            <p>Price Change{" %"}</p>
-            <p>Last Updated</p>
+        markets.length > 0 && (
+          <div className="flex flex-col bg-secondary/10 rounded-2xl p-2 gap-4">
+            <div className="grid grid-cols-6 px-2 items-center text-xl">
+              <p>Coin</p>
+              <p>Price</p>
+              <p>Market Cap</p>
+              <p>Volume</p>
+              <p>Price Change{" %"}</p>
+              <p>Last Updated</p>
+            </div>
+            <div className="flex flex-col gap-2 h-[820px] overflow-y-auto">
+              {markets.map((market) => (
+                <CoinCard
+                  key={market.id}
+                  price={market.current_price}
+                  name={market.name}
+                  image={market.image}
+                  marketCap={market.market_cap}
+                  volume={market.total_volume}
+                  priceChange={market.price_change_percentage_24h}
+                  lastUpdated={new Date(market.last_updated).toLocaleString()}
+                />
+              ))}
+            </div>
           </div>
-          <div className="flex flex-col gap-2 h-[820px] overflow-y-auto">
-            {markets.map((market) => (
-              <CoinCard
-                key={market.id}
-                price={market.current_price}
-                name={market.name}
-                image={market.image}
-                marketCap={market.market_cap}
-                volume={market.total_volume}
-                priceChange={market.price_change_percentage_24h}
-                lastUpdated={new Date(market.last_updated).toLocaleString()}
-              />
-            ))}
-          </div>
-        </div>
+        )
       )}
     </div>
   );
 }
+
+export default React.memo(MarketsSection);

@@ -1,8 +1,9 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import * as fetchData from "../Data/FetchData";
 import ArticleCard from "../Components/ArticleCard";
 
-export default function NewsSection() {
+function NewsSection() {
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -21,18 +22,22 @@ export default function NewsSection() {
       {isLoading ? (
         <p>Loading News...</p>
       ) : (
-        <div className="grid grid-cols-2 gap-8">
-          {news.map((article) => (
-            <ArticleCard
-              key={article.url}
-              title={article.title}
-              description={article.description}
-              image={article.urlToImage}
-              url={article.url}
-            />
-          ))}
-        </div>
+        news.length > 0 && (
+          <div className="grid grid-cols-2 gap-8">
+            {news.map((article) => (
+              <ArticleCard
+                key={article.url}
+                title={article.title}
+                description={article.description}
+                image={article.urlToImage}
+                url={article.url}
+              />
+            ))}
+          </div>
+        )
       )}
     </div>
   );
 }
+
+export default React.memo(NewsSection);

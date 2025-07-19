@@ -1,7 +1,8 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import * as fetchData from "../Data/FetchData";
 
-export default function ExchangesSection() {
+function ExchangesSection() {
   const [exchanges, setExchanges] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -61,3 +62,5 @@ export default function ExchangesSection() {
     </div>
   );
 }
+
+export default React.memo(ExchangesSection);

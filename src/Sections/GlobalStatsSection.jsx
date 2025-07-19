@@ -1,7 +1,8 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import * as fetchData from "../Data/FetchData";
 
-export default function GlobalStatsSection() {
+function GlobalStatsSection() {
   const [globalStats, setGlobalStats] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
@@ -46,3 +47,4 @@ export default function GlobalStatsSection() {
     </div>
   );
 }
+export default React.memo(GlobalStatsSection);

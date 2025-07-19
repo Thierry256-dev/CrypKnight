@@ -1,8 +1,9 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as fetchData from "../Data/FetchData";
 
-export default function TrendingSection() {
+function TrendingSection() {
   const [trendingCoins, setTrendingCoins] = useState([]);
   const [trendingNfts, setTrendingNfts] = useState([]);
   const [coins, setCoins] = useState(true);
@@ -119,3 +120,5 @@ export default function TrendingSection() {
     </div>
   );
 }
+
+export default React.memo(TrendingSection);
