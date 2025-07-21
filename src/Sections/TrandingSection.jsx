@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import * as fetchData from "../Data/FetchData";
 
@@ -7,20 +8,20 @@ function TrendingSection() {
   const [trendingCoins, setTrendingCoins] = useState([]);
   const [trendingNfts, setTrendingNfts] = useState([]);
   const [coins, setCoins] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
+  const { data, isLoading } = useQuery({
+    queryKey: [],
+    queryFn: async () => await fetchData.fetchTrending(),
+  });
+
   useEffect(() => {
-    const fetchTrend = async () => {
-      setIsLoading(true);
-      const data = await fetchData.fetchTrending();
+    if (!isLoading && data) {
       setTrendingCoins(data.coins);
       setTrendingNfts(data.nfts);
-      setIsLoading(false);
-    };
-    fetchTrend();
-  }, []);
+    }
+  }, [data, isLoading]);
 
   const changeBtns = [
     { name: "Coins", state: true },

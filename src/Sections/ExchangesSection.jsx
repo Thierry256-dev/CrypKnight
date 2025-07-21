@@ -1,19 +1,19 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import * as fetchData from "../Data/FetchData";
 
 function ExchangesSection() {
   const [exchanges, setExchanges] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["exchanges"],
+    queryFn: async () => await fetchData.fetchExchanges(),
+  });
 
   useEffect(() => {
-    const fetchExch = async () => {
-      setIsLoading(true);
-      await fetchData.fetchExchanges(setExchanges);
-      setIsLoading(false);
-    };
-    fetchExch();
-  }, []);
+    if (!isLoading && data) setExchanges(data);
+  }, [isLoading, data]);
 
   return (
     <div className="flex flex-col px-4 py-2 h-[650px] bg-secondary/8 rounded-xl gap-2">

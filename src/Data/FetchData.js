@@ -86,18 +86,19 @@ export const fetchCoinDetails = async (coinId, setData) => {
   }
 };
 
-export const fetchExchanges = async (setData) => {
+export const fetchExchanges = async () => {
+  let response;
   try {
-    const response = await axios.get(`${URLS.COINGECKO_URL}/exchanges`, {
+    response = await axios.get(`${URLS.COINGECKO_URL}/exchanges`, {
       params: {
         per_page: 50,
       },
     });
-
-    setData(response.data);
   } catch (error) {
     console.error("Error fetching exchanges:", error);
   }
+
+  return response.data;
 };
 
 export const fetchTrending = async () => {
@@ -110,14 +111,15 @@ export const fetchTrending = async () => {
   return response.data;
 };
 
-export const fetchGlobalStats = async (setData) => {
+export const fetchGlobalStats = async () => {
+  let response;
   try {
-    const response = await axios.get(`${URLS.COINGECKO_URL}/global`);
-
-    setData(response.data.data);
+    response = await axios.get(`${URLS.COINGECKO_URL}/global`);
   } catch (error) {
     console.error("Error fetching global stats:", error);
   }
+
+  return response.data.data;
 };
 
 export const fetchNewsSources = async (setData) => {
@@ -149,9 +151,10 @@ export const fetchSearch = async (query) => {
   return response.data;
 };
 
-export const fetchTopHeadlines = async (setData) => {
+export const fetchTopHeadlines = async () => {
+  let response;
   try {
-    const response = await axios.get(`${URLS.NEWS_URL}/top-headlines`, {
+    response = await axios.get(`${URLS.NEWS_URL}/top-headlines`, {
       params: {
         category: "business",
         country: "us",
@@ -159,18 +162,19 @@ export const fetchTopHeadlines = async (setData) => {
         pageSize: 20,
       },
     });
-
-    setData(response.data.articles);
   } catch (error) {
     console.error("Error fetching top headlines:", error);
   }
+
+  return response.data.articles;
 };
 
-export const fetchAllNews = async (setData) => {
+export const fetchAllNews = async () => {
   const now = new Date();
+  let response;
 
   try {
-    const response = await axios.get(`${URLS.NEWS_URL}/everything`, {
+    response = await axios.get(`${URLS.NEWS_URL}/everything`, {
       params: {
         q: "cryptocurrency",
         apiKey: import.meta.env.VITE_NEWS_API_KEY,
@@ -179,9 +183,9 @@ export const fetchAllNews = async (setData) => {
         pageSize: 50,
       },
     });
-
-    setData(response.data.articles);
   } catch (error) {
     console.error("Error fetching news:", error);
   }
+
+  return response.data.articles;
 };

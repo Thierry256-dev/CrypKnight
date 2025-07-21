@@ -1,19 +1,20 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import * as fetchData from "../Data/FetchData";
 
 function TopHeadlinesSection() {
   const [headlines, setHeadlines] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["trending"],
+    queryFn: async () => await fetchData.fetchTopHeadlines(),
+  });
 
   useEffect(() => {
-    const fetchHeadlines = async () => {
-      setIsLoading(true);
-      await fetchData.fetchTopHeadlines(setHeadlines);
-      setIsLoading(false);
-    };
-    fetchHeadlines();
-  }, []);
+    if (!isLoading && data) setHeadlines(data);
+  }, [isLoading, data]);
+
   return (
     <div className="h-[100%] w-[60%]">
       <h1 className="font-bold text-4xl p-2 text-read/90">Top Headlines</h1>

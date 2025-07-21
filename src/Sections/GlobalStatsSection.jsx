@@ -1,19 +1,19 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 import * as fetchData from "../Data/FetchData";
 
 function GlobalStatsSection() {
   const [globalStats, setGlobalStats] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["globalStats"],
+    queryFn: async () => await fetchData.fetchGlobalStats(),
+  });
 
   useEffect(() => {
-    const fetchGlobalStats = async () => {
-      setIsLoading(true);
-      await fetchData.fetchGlobalStats(setGlobalStats);
-      setIsLoading(false);
-    };
-    fetchGlobalStats();
-  }, []);
+    if (!isLoading && data) setGlobalStats(data);
+  }, [data, isLoading]);
 
   function isLoaded(obj) {
     return obj && Object.keys(obj).length > 0;

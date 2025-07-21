@@ -1,20 +1,20 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import * as fetchData from "../Data/FetchData";
 import ArticleCard from "../Components/ArticleCard";
 
 function NewsSection() {
   const [news, setNews] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["news"],
+    queryFn: async () => await fetchData.fetchAllNews(),
+  });
 
   useEffect(() => {
-    const fetchNews = async () => {
-      setIsLoading(true);
-      await fetchData.fetchAllNews(setNews);
-      setIsLoading(false);
-    };
-    fetchNews();
-  }, []);
+    if (data && !isLoading) setNews(data);
+  }, [data, isLoading]);
 
   return (
     <div className="flex flex-col px-4">
