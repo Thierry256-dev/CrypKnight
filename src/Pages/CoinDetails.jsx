@@ -1,50 +1,42 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import * as fetchData from "../Data/FetchData";
 import CoinGraph from "../Components/CoinGraph";
+import * as options from "../services/utils";
+import useFetchGraphData from "../Hooks/useFetchGraphData";
 
 export default function CoinDetails() {
   const { coinId } = useParams();
+  const [chartType, setChartType] = useState("candlestick");
+  const [days, setDays] = useState(1);
   const [coinDetails, setCoinDetails] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
-  const [chartData, setChartData] = useState({
-    series: [],
-    options: {
-      chart: { type: "line", background: "transparent" },
-      xaxis: { type: "datetime" },
-      yaxis: { labels: { formatter: (v) => `$${v}` } },
-      fill: {
-        type: "gradient",
-        gradient: {
-          shade: "dark",
-          type: "vertical",
-          shadeIntensity: 0.7,
-          gradientToColors: ["#ed4a26"],
-          inverseColors: false,
-          opacityFrom: 0.7,
-          opacityTo: 0.1,
-          stops: [0, 100],
-        },
-      },
-      stroke: { curve: "smooth", width: 2 },
-      dataLabels: { enabled: false },
-      theme: { mode: "dark" },
-    },
+  const [ohlc, area] = useFetchGraphData(coinId, days); //returns data to be used as series data
+
+  const { data, isLoading } = useQuery({
+    queryKey: [coinId],
+    queryFn: async () => await fetchData.fetchCoinDetails(coinId),
   });
 
   useEffect(() => {
-    const fetchCoin = async () => {
-      setIsLoading(true);
-      await fetchData.fetchCoinDetails(coinId, setCoinDetails);
-      await fetchData.fetchCoinsLine(coinId, 1, setChartData);
-      setIsLoading(false);
-    };
-    fetchCoin();
-  }, [coinId]);
+    if (!isLoading && data) setCoinDetails(data);
+  }, [data, isLoading]);
 
   function isLoaded(obj) {
     return obj && Object.keys(obj).length > 0;
   }
+
+  const chartTypes = [
+    { name: "CandleStick", type: "candlestick" },
+    { name: "LineChart", type: "area" },
+  ];
+
+  const daysArray = [
+    { id: "1", interval: 1, name: "Day" },
+    { id: "2", interval: 7, name: "Week" },
+    { id: "3", interval: 30, name: "Month" },
+    { id: "4", interval: 365, name: "Year" },
+  ];
 
   return (
     <div className="text-read/90 w-[100%] min-h-screen flex flex-col items-center bg-secondary/5 p-4 md:p-8">
@@ -131,11 +123,39 @@ export default function CoinDetails() {
                 <h3 className="text-xl font-semibold text-accent mb-2">
                   Price Chart (1 day)
                 </h3>
+                <div className="flexjustify-around">
+                  <select
+                    name="days-select"
+                    id="days"
+                    onClick={(e) => setDays(e.target.value)}
+                  >
+                    {daysArray.map((obj) => (
+                      <option key={obj.id} value={obj.interval}>
+                        {obj.name}
+                      </option>
+                    ))}
+                  </select>
+                  <select
+                    name="tyep-select"
+                    id="chartType"
+                    onClick={(e) => setChartType(e.target.value)}
+                  >
+                    {chartTypes.map((obj) => (
+                      <option key={obj.name} value={obj.type}>
+                        {obj.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
                 <div className="w-full h-[300px] bg-secondary/8 rounded-lg p-2">
                   <CoinGraph
-                    options={chartData.options}
-                    series={chartData.series}
-                    type="line"
+                    options={
+                      chartType === "candlestick"
+                        ? options.ohlcOptions
+                        : options.areaOptions
+                    }
+                    series={chartType === "candlestick" ? ohlc.data : area.data}
+                    type={chartType}
                     height={280}
                   />
                 </div>
