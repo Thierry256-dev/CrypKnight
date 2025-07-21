@@ -1,7 +1,8 @@
 import * as URLS from "../services/urls.js";
 import axios from "axios";
 
-export const fetchCoinsLine = async (coinId, days, setData) => {
+export const fetchCoinsArea = async (coinId, days) => {
+  let data;
   try {
     const response = await axios.get(
       `${URLS.COINGECKO_URL}/coins/${coinId}/market_chart`,
@@ -12,17 +13,15 @@ export const fetchCoinsLine = async (coinId, days, setData) => {
         },
       }
     );
-    const data = response.data.prices.map(([timestamp, price]) => ({
+    data = response.data.prices.map(([timestamp, price]) => ({
       x: new Date(timestamp).toISOString(),
       y: price,
-    }));
-    setData((prev) => ({
-      ...prev,
-      series: [{ name: coinId, data }],
     }));
   } catch (error) {
     console.error("Error fetching markets_charts:", error);
   }
+
+  return [{ name: coinId, data }];
 };
 export const fetchMarkets = async (setData) => {
   try {
@@ -42,7 +41,8 @@ export const fetchMarkets = async (setData) => {
   }
 };
 
-export const fetchCoinChart = async (coinId, days, setData) => {
+export const fetchCoinChart = async (coinId, days) => {
+  let data;
   try {
     const response = await axios.get(
       `${URLS.COINGECKO_URL}/coins/${coinId}/ohlc`,
@@ -53,17 +53,14 @@ export const fetchCoinChart = async (coinId, days, setData) => {
         },
       }
     );
-    const data = response.data.map(([timestamp, open, high, low, close]) => ({
+    data = response.data.map(([timestamp, open, high, low, close]) => ({
       x: new Date(timestamp).toISOString(),
       y: [open, high, low, close],
-    }));
-    setData((prev) => ({
-      ...prev,
-      series: [{ name: coinId, data }],
     }));
   } catch (error) {
     console.error("Error fetching candlestick data:", error);
   }
+  return [{ name: coinId, data }];
 };
 
 export const fetchCoinDetails = async (coinId, setData) => {

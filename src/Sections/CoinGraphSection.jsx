@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import * as options from "../services/utils";
 import CoinGraph from "../Components/CoinGraph";
 import useFetchGraphData from "../Hooks/useFetchGraphData";
 import useGetCoinsListAndPrice from "../Hooks/useGetCoinsListAndPrice";
@@ -8,7 +8,7 @@ export default function CoinGraphSection() {
   const [chartType, setChartType] = useState("candlestick");
   const [coinId, setCoinId] = useState("bitcoin");
   const [days, setDays] = useState(1);
-  const [ohlcData, areaData] = useFetchGraphData(coinId, days);
+  const [ohlc, area] = useFetchGraphData(coinId, days); // returns useQuery data
   const [coinsList, currentPrice] = useGetCoinsListAndPrice(coinId);
 
   const daysButtonData = [
@@ -87,14 +87,10 @@ export default function CoinGraphSection() {
               <CoinGraph
                 options={
                   chartType === "candlestick"
-                    ? ohlcData.options
-                    : areaData.options
+                    ? options.ohlcOptions
+                    : options.areaOptions
                 }
-                series={
-                  chartType === "candlestick"
-                    ? ohlcData.series
-                    : areaData.series
-                }
+                series={chartType === "candlestick" ? ohlc?.data : area?.data}
                 type={chartType}
                 height={350}
               />

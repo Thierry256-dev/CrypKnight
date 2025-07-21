@@ -1,14 +1,18 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import LayOut from "./LayOut/LayOut";
 import AppRoutes from "./Routes/AppRoutes";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 function App() {
+  const client = new QueryClient();
   return (
     <>
       <Router>
-        <LayOut>
-          <AppRoutes />
-        </LayOut>
+        <QueryClientProvider client={client}>
+          <LayOut>
+            <AppRoutes />
+          </LayOut>
+        </QueryClientProvider>
       </Router>
     </>
   );
