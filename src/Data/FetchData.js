@@ -23,7 +23,9 @@ export const fetchCoinsArea = async (coinId, days) => {
 
   return [{ name: coinId, data }];
 };
-export const fetchMarkets = async (setData) => {
+
+export const fetchMarkets = async () => {
+  let data;
   try {
     const response = await axios.get(`${URLS.COINGECKO_URL}/coins/markets`, {
       params: {
@@ -35,10 +37,12 @@ export const fetchMarkets = async (setData) => {
       },
     });
 
-    setData(response.data);
+    data = response.data;
   } catch (error) {
     console.error("Error fetching markets:", error);
   }
+
+  return data;
 };
 
 export const fetchCoinChart = async (coinId, days) => {
