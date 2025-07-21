@@ -28,17 +28,19 @@ function GlobalStatsSection() {
         <p>Loading...</p>
       ) : (
         isLoaded(globalStats) && (
-          <div className="grid grid-cols-2 gap-2 p-2 bg-secondary/8 rounded-xl text-read/80">
+          <div className="grid grid-cols-2 gap-2 p-2 bg-secondary/8 rounded-xl opacity-80">
             <p>Active CyptoCurrencies</p>
-            <p className="text-read">: {globalStats.active_cryptocurrencies}</p>
+            <p className="opacity-100">
+              : {globalStats.active_cryptocurrencies}
+            </p>
             <p>Ongoing ICOs</p>
-            <p className="text-read">: {globalStats.ongoing_icos}</p>
+            <p className="opacity-100">: {globalStats.ongoing_icos}</p>
             <p>Ended ICOs</p>
-            <p className="text-read">: {globalStats.ended_icos}</p>
+            <p className="opacity-100">: {globalStats.ended_icos}</p>
             <p>Markets</p>
-            <p className="text-read">: {globalStats.markets}</p>
+            <p className="opacity-100">: {globalStats.markets}</p>
             <p>Total Market Cap/BTC</p>
-            <p className="text-read">
+            <p className="opacity-100">
               : {globalStats.total_market_cap?.btc ?? "N/A"}
             </p>
           </div>

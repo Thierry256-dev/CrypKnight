@@ -2,7 +2,7 @@ export const ohlcOptions = {
   chart: {
     zoom: { enabled: false },
     toolbar: { show: false },
-    background: "#1f1616",
+
     animations: {
       enabled: true,
       easing: "easeinout",
@@ -38,7 +38,7 @@ export const areaOptions = {
   chart: {
     zoom: { enabled: false },
     toolbar: { show: false },
-    background: "#1f1616",
+
     animations: {
       enabled: true,
       easing: "easeinout",

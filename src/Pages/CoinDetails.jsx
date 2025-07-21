@@ -39,12 +39,12 @@ export default function CoinDetails() {
   ];
 
   return (
-    <div className="text-read/90 w-[100%] min-h-screen flex flex-col items-center bg-secondary/5 p-4 md:p-8">
+    <div className=" w-[100%] min-h-screen flex flex-col items-center bg-secondary/5 p-4 md:p-8">
       {isLoading ? (
         <p className="text-center text-lg text-accent">Loading...</p>
       ) : (
         isLoaded(coinDetails) && (
-          <div className="w-full max-w-4xl bg-white dark:bg-black/30 rounded-xl shadow-lg p-4 md:p-8 flex flex-col gap-8">
+          <div className="w-full max-w-4xl bg-white bg-black/30 rounded-xl shadow-lg p-4 md:p-8 flex flex-col gap-8">
             <div className="flex flex-col md:flex-row items-center gap-6">
               <img
                 src={coinDetails.image?.large}
@@ -55,7 +55,7 @@ export default function CoinDetails() {
                 <h2 className="text-3xl md:text-4xl font-bold text-accent mb-2">
                   {coinDetails.name}
                 </h2>
-                <div className="flex flex-wrap gap-4 text-read/80">
+                <div className="flex flex-wrap gap-4">
                   <span className="bg-secondary/10 px-3 py-1 rounded-lg font-semibold">
                     {coinDetails.symbol?.toUpperCase()}
                   </span>
@@ -121,9 +121,9 @@ export default function CoinDetails() {
               </div>
               <div className="flex flex-col gap-2">
                 <h3 className="text-xl font-semibold text-accent mb-2">
-                  Price Chart (1 day)
+                  Price Chart
                 </h3>
-                <div className="flexjustify-around">
+                <div className="flex justify-around">
                   <select
                     name="days-select"
                     id="days"

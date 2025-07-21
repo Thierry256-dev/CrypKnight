@@ -2,6 +2,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import LayOut from "./LayOut/LayOut";
 import AppRoutes from "./Routes/AppRoutes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ThemeProvider } from "./Context/ThemeContextProvider";
 
 function App() {
   const client = new QueryClient();
@@ -9,9 +10,11 @@ function App() {
     <>
       <Router>
         <QueryClientProvider client={client}>
-          <LayOut>
-            <AppRoutes />
-          </LayOut>
+          <ThemeProvider>
+            <LayOut>
+              <AppRoutes />
+            </LayOut>
+          </ThemeProvider>
         </QueryClientProvider>
       </Router>
     </>

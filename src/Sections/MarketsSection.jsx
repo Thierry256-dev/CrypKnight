@@ -17,8 +17,8 @@ function MarketsSection() {
   }, [isLoading, data]);
 
   return (
-    <div className="p-8 text-read h-[100%]">
-      <h1 className="text-read text-4xl font-bold pb-4">Markets</h1>
+    <div className="p-8 h-[100%]">
+      <h1 className="text-4xl font-bold pb-4">Markets</h1>
       {isLoading ? (
         <p>Loading Markets...</p>
       ) : (

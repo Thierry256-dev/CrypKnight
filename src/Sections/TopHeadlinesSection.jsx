@@ -17,7 +17,7 @@ function TopHeadlinesSection() {
 
   return (
     <div className="h-[100%] w-[60%]">
-      <h1 className="font-bold text-4xl p-2 text-read/90">Top Headlines</h1>
+      <h1 className="font-bold text-4xl p-2 opacity-90">Top Headlines</h1>
       {isLoading ? (
         <p>Loading News...</p>
       ) : (
@@ -36,15 +36,15 @@ function TopHeadlinesSection() {
                   />
                 )}
                 <div>
-                  <h2 className="font-semibold text-xl text-read/90">
+                  <h2 className="font-semibold text-xl opacity-90">
                     {article.title}
                   </h2>
-                  <p className="p-2 text-read/70">{article.description}</p>
+                  <p className="p-2 opacity-70">{article.description}</p>
                   <a
                     href={article.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="italic text-read/30 text-md"
+                    className="italic opacity-30 text-md"
                   >
                     ReadMore
                   </a>

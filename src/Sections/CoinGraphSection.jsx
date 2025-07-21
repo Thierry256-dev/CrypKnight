@@ -40,9 +40,9 @@ export default function CoinGraphSection() {
                 ))}
               </select>
               <p>
-                <span className="text-read/80 text-2xl">CurrentPrice: </span>
+                <span className="opacity-70 text-2xl">CurrentPrice: </span>
                 <span className="text-2xl font-bold">{currentPrice}</span>
-                <span className="text-read/40 text-sm"> USD</span>
+                <span className="opacity-40 text-sm"> USD</span>
               </p>
             </div>
             <div className="flex justify-between">

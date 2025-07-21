@@ -8,7 +8,7 @@ import TrendingSection from "../Sections/TrandingSection";
 
 function Dashboard() {
   return (
-    <div className="flex p-6 w-auto text-read max-h-screen overflow-y-hidden">
+    <div className="flex p-6 w-auto max-h-screen overflow-y-hidden">
       <div className="w-[70%]">
         <CoinGraphSection />
         <div className="h-[100%] flex gap-2">

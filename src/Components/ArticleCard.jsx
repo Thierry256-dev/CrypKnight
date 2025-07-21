@@ -10,13 +10,13 @@ export default function ArticleCard({ title, description, image, url }) {
         />
       )}
       <div>
-        <h2 className="font-bold text-xl text-read/90">{title}</h2>
-        <p className="p-2 text-read/70">{description}</p>
+        <h2 className="font-bold text-xl">{title}</h2>
+        <p className="p-2 opacity-70">{description}</p>
         <a
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          className="italic text-read/30"
+          className="italic opacity-30"
         >
           ReadMore
         </a>

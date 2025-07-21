@@ -3,8 +3,8 @@ import TopHeadlinesSection from "../Sections/TopHeadlinesSection";
 
 export default function News() {
   return (
-    <div className="flex p-8 flex-col text-read/90 h-screen overflow-y-auto">
-      <h1 className="text-4xl text-read font-bold">News</h1>
+    <div className="flex p-8 flex-col h-screen overflow-y-auto">
+      <h1 className="text-4xl font-bold">News</h1>
       <div>
         <TopHeadlinesSection />
       </div>

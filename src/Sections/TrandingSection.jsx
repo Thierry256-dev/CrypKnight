@@ -75,8 +75,8 @@ function TrendingSection() {
                     </div>
                     <div className="flex flex-cols w-[50%] gap-4 bg-black/20 rounded-sm p-1">
                       <div className="grid grid-cols-1">
-                        <p className="text-read/80">Rank:</p>
-                        <p className="text-read/80">Price:</p>
+                        <p className="opacity-80">Rank:</p>
+                        <p className="opacity-80">Price:</p>
                       </div>
                       <div className="grid grid-cols-1">
                         <p className="text-accent">
@@ -96,7 +96,7 @@ function TrendingSection() {
                 trendingNfts.map((obj) => (
                   <div
                     key={obj.key}
-                    className="flex flex-col justify-between w-[100%] gap-2 p-2 bg-secondary/8 rounded-md text-read/80"
+                    className="flex flex-col justify-between w-[100%] gap-2 p-2 bg-secondary/8 rounded-md"
                   >
                     <div>
                       <img
@@ -106,8 +106,8 @@ function TrendingSection() {
                       />
                     </div>
                     <div className="flex flex-col gap-1 bg-black/20 rounded-sm p-2">
-                      <p>{obj.name}</p>
-                      <p>{obj.symbol}</p>
+                      <p className="opacity-80">{obj.name}</p>
+                      <p className="opacity-80">{obj.symbol}</p>
                       <p className="font-semibold text-accent">
                         {obj.data.floor_price}
                       </p>

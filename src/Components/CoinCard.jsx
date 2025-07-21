@@ -8,7 +8,7 @@ export default function CoinCard({
   image,
 }) {
   return (
-    <div className="grid grid-cols-6 gap-1 bg-black/10 items-center p-1 rounded-md text-read/90">
+    <div className="grid grid-cols-6 gap-1 bg-black/10 items-center p-1 rounded-md">
       <div className="flex items-center gap-4">
         <img src={image} alt={name} className="w-10" />
         <h2>{name}</h2>
