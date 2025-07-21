@@ -1,20 +1,21 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 import * as fetchData from "../Data/FetchData";
 import CoinCard from "../Components/CoinCard";
 
 function MarketsSection() {
   const [markets, setMarkets] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["markets"],
+    queryFn: async () => await fetchData.fetchMarkets(),
+  });
 
   useEffect(() => {
-    const fetchMarkets = async () => {
-      setIsLoading(true);
-      await fetchData.fetchMarkets(setMarkets);
-      setIsLoading(false);
-    };
-    fetchMarkets();
-  }, []);
+    if (!isLoading && data) setMarkets(data);
+  }, [isLoading, data]);
+
   return (
     <div className="p-8 text-read h-[100%]">
       <h1 className="text-read text-4xl font-bold pb-4">Markets</h1>
